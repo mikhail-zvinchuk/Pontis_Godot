@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2oeo3kgs7bla"]
+
+[ext_resource type="Script" path="res://scripts/CardBase.gd" id="1_lfkfb"]
+
+[node name="CardBase" type="MarginContainer"]
+anchors_preset = -1
+anchor_right = 0.062
+anchor_bottom = 0.145
+offset_right = -0.424004
+offset_bottom = 0.0399933
+pivot_offset = Vector2(35.5, 47)
+script = ExtResource("1_lfkfb")
+
+[node name="CardFront" type="Sprite2D" parent="."]
+
+[node name="CardBack" type="Sprite2D" parent="."]

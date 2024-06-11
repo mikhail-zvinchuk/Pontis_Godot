@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cie6s8373brxb"]
+
+[ext_resource type="Script" path="res://scripts/ParticipantsHand.gd" id="1_us8y3"]
+
+[node name="ParticipantsHand" type="Node2D"]
+script = ExtResource("1_us8y3")
+
+[node name="CardContainer" type="HFlowContainer" parent="."]
+layout_direction = 2
+offset_top = -1.0
+offset_right = 476.0
+offset_bottom = 96.0
+theme_override_constants/h_separation = 20
+alignment = 1

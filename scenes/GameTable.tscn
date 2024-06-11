@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://4nyaa4pbtnlu"]
+
+[ext_resource type="PackedScene" uid="uid://cie6s8373brxb" path="res://scenes/ParticipantsHand.tscn" id="1_5j8fh"]
+[ext_resource type="PackedScene" uid="uid://bq517aew6pkkl" path="res://scenes/Deck.tscn" id="1_cdw03"]
+[ext_resource type="Script" path="res://scripts/GameTable.gd" id="1_r2y23"]
+[ext_resource type="PackedScene" uid="uid://csm72u71wllj7" path="res://scenes/PlayersField.tscn" id="2_0lhrf"]
+[ext_resource type="PackedScene" uid="uid://c7kiu5mm8n877" path="res://scenes/Pontis.tscn" id="2_2bwdj"]
+
+[node name="Node2D" type="Node"]
+
+[node name="GameTable" type="Node2D" parent="."]
+script = ExtResource("1_r2y23")
+
+[node name="ColorRect" type="ColorRect" parent="GameTable"]
+offset_right = 1193.0
+offset_bottom = 795.0
+color = Color(0.215686, 0.290196, 0.145098, 1)
+
+[node name="Deck" parent="GameTable" instance=ExtResource("1_cdw03")]
+offset_left = 299.0
+offset_top = 290.0
+offset_right = 370.0
+offset_bottom = 384.0
+
+[node name="Pontis" parent="GameTable" instance=ExtResource("2_2bwdj")]
+position = Vector2(407, 338)
+
+[node name="PlayersField" parent="." instance=ExtResource("2_0lhrf")]
+unique_name_in_owner = true
+position = Vector2(206, 553)
+
+[node name="ParticipantsHand" parent="PlayersField" instance=ExtResource("1_5j8fh")]
+position = Vector2(167, 97)
+active_player = true
+
+[node name="PlayersField3" parent="." instance=ExtResource("2_0lhrf")]
+unique_name_in_owner = true
+position = Vector2(987, 202)
+rotation = 3.14159
+
+[node name="ParticipantsHand" parent="PlayersField3" instance=ExtResource("1_5j8fh")]
+position = Vector2(-1.00001, 102)
+
+[node name="PlayersField2" parent="." instance=ExtResource("2_0lhrf")]
+unique_name_in_owner = true
+position = Vector2(209, 23)
+rotation = 1.5708
+
+[node name="ParticipantsHand" parent="PlayersField2" instance=ExtResource("1_5j8fh")]
+position = Vector2(76, 100)
+
+[node name="PlayersField4" parent="." instance=ExtResource("2_0lhrf")]
+unique_name_in_owner = true
+position = Vector2(994, 785)
+rotation = -1.5708
+
+[node name="ParticipantsHand" parent="PlayersField4" instance=ExtResource("1_5j8fh")]
+position = Vector2(117, 99)
+
+[node name="UI buttons" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartGameButton" type="Button" parent="UI buttons"]
+layout_mode = 2
+
+[connection signal="pressed" from="UI buttons/StartGameButton" to="GameTable" method="_on_start_game_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq517aew6pkkl"]
+
+[ext_resource type="Texture2D" uid="uid://duyqxsqk7sspu" path="res://assets/cards/Back_Blue_1.png" id="1_33ec4"]
+[ext_resource type="Texture2D" uid="uid://skjlanf043rr" path="res://assets/cards/Empty.png" id="2_q504p"]
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="3_ctajt"]
+
+[node name="Deck" type="TextureButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -47.0
+offset_right = 35.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_33ec4")
+texture_pressed = ExtResource("1_33ec4")
+texture_hover = ExtResource("1_33ec4")
+texture_disabled = ExtResource("2_q504p")
+script = ExtResource("3_ctajt")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

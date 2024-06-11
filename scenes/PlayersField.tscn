@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://csm72u71wllj7"]
+
+[sub_resource type="Theme" id="Theme_kgyo3"]
+
+[node name="PlayersField" type="Node2D"]
+
+[node name="CardContainer" type="HFlowContainer" parent="."]
+offset_right = 780.0
+offset_bottom = 98.0
+theme = SubResource("Theme_kgyo3")
