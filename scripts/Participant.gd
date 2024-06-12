@@ -33,7 +33,7 @@ func play_turn():
 	match type:
 		PlayerTypes.HUMAN:
 			#TODO start timer, await input
-            #TODO turn on the ui for the player
+			#TODO turn on the ui for the player
 			pass
 		PlayerTypes.NPC:
 			#TODO
@@ -50,7 +50,7 @@ func recieve_card(card):
 	
 	
 func make_npc_move():
-    #todo decide if draw from pontis or from deck
+	#todo decide if draw from pontis or from deck
 	var card_from_pontis = check_pontis_for_card_that_can_be_layed()
 
 	if card_from_pontis:
@@ -78,5 +78,10 @@ func lay_cards(cards_from_pontis):
 	pass
 
 func return_card(cards_from_pontis):
-	#TODO add retrival
+	var cards_in_hand = hand.CardContainer.get_children()
+
+	var choosen_card = cards_in_hand[0]
+	hand.put_to_pontis(choosen_card)
 	pass
+	
+	#todo real implementatio

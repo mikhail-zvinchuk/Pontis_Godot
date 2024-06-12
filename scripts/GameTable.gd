@@ -28,6 +28,7 @@ func _ready():
 	 	Participant.PlayerTypes.HUMAN)
 	player_1.finsihed_turn.connect(next_turn)
 	player_1.finished_game.connect(game_finished)
+	%PlayersField/ParticipantsHand.card_ready_for_pontis.connect(put_card_on_pontis)
 
 	player_2 = Participant.new(self, 
 		%PlayersField2/ParticipantsHand, 
@@ -104,4 +105,8 @@ func next_turn():
 func game_finished():
 	#TODO calculate score
 	#TODO reset board
+	pass
+
+func put_card_on_pontis(card):
+	$Pontis.add_card(card)
 	pass

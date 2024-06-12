@@ -1,5 +1,7 @@
 extends MarginContainer
 
+signal card_clicked(card)
+
 #vars
 var CardName = null
 
@@ -15,8 +17,8 @@ var CardBackImage = str("res://assets/cards/",CardBackName,".png")
 func _ready():
 	CardName = CardInfo[3]
 	var CardFrontImage = str("res://assets/cards/",CardInfo[3],".png")
-	$CardBack.texture = load(CardBackImage)
-	$CardFront.texture = load(CardFrontImage)
+	$Card.texture_disabled = load(CardBackImage)
+	$Card.texture_normal = load(CardFrontImage)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +27,11 @@ func _process(delta):
 	
 	
 
-func toggle_visibility():
-	$CardBack.visible = !$CardBack.visible
+func toggle_disabled():
+	$Card.disabled = !$Card.disabled
 	pass
-	
+
+
+
+func _on_texture_button_pressed():
+	card_clicked.emit(self)

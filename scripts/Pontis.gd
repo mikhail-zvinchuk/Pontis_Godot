@@ -12,5 +12,4 @@ func _process(delta):
 
 
 func add_card(card):
-	card.toggle_visibility()
 	$CardsContainer.add_child(card)

@@ -4,13 +4,12 @@
 
 [node name="CardBase" type="MarginContainer"]
 anchors_preset = -1
-anchor_right = 0.062
-anchor_bottom = 0.145
-offset_right = -0.424004
-offset_bottom = 0.0399933
-pivot_offset = Vector2(35.5, 47)
+anchor_top = -0.5
+offset_right = 15.0
+grow_vertical = 2
 script = ExtResource("1_lfkfb")
 
-[node name="CardFront" type="Sprite2D" parent="."]
+[node name="Card" type="TextureButton" parent="."]
+layout_mode = 2
 
-[node name="CardBack" type="Sprite2D" parent="."]
+[connection signal="pressed" from="Card" to="." method="_on_texture_button_pressed"]
