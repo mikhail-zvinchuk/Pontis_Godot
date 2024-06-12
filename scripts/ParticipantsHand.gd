@@ -1,5 +1,7 @@
 extends Node2D
 
+# This is the visual representation of participants handand it's UI
+
 @export var active_player = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
