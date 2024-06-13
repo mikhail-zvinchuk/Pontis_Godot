@@ -7,7 +7,7 @@ extends Node2D
 const CardSize = Vector2(125,175)
 const CardBase = preload("res://scenes/CardBase.tscn")
 const PlayerHand = preload("res://scripts/ParticipantsHand.gd")
-const Participant = preload("res://scripts/Participant.gd")
+const Participant = preload("res://scripts/Abstractions/Participant.gd")
 var CardSelected = []
  
 @onready var  Deck = $Deck
@@ -28,7 +28,7 @@ func _ready():
 	 	Participant.PlayerTypes.HUMAN)
 	player_1.finsihed_turn.connect(next_turn)
 	player_1.finished_game.connect(game_finished)
-	%PlayersField/ParticipantsHand.card_ready_for_pontis.connect(put_card_on_pontis)
+	
 
 	player_2 = Participant.new(self, 
 		%PlayersField2/ParticipantsHand, 
@@ -49,6 +49,8 @@ func _ready():
 	player_4.finished_game.connect(game_finished)
 
 	players = [player_1, player_2, player_3, player_4]
+	
+	%Menu.start_new_game.connect(_on_start_game_button_pressed)
 
 	pass # Replace with function body.
 
@@ -59,7 +61,8 @@ func _ready():
 
 func draw_card_from_deck():
 	var card = Deck.draw_card()
-	%PlayersField/ParticipantsHand.add_to_hand(card)
+	if card:
+		%PlayersField/ParticipantsHand.add_to_hand(card)
 
 
 func draw_card():
@@ -68,7 +71,7 @@ func draw_card():
 
 
 func _on_start_game_button_pressed():
-
+	%SettingsButton.set_visible(true)
 	#Clean the board, shuffle the deck
 	Deck.shuffle()
 	
@@ -80,10 +83,11 @@ func _on_start_game_button_pressed():
 			var drawn_card = Deck.draw_card()
 			#TODO Add animation of card movement
 			players[j].recieve_card(drawn_card)
+			await get_tree().create_timer(0.1).timeout
 		
 	#put card on pontis
 	var card = Deck.draw_card()
-	$Pontis.add_card(card)
+	put_card_on_pontis(card)
 
 	#end of dealing
 
@@ -92,13 +96,13 @@ func _on_start_game_button_pressed():
 
 
 func next_turn():
-	if current_player_index < players.size() :
+	if current_player_index < players.size() - 1 :
 		current_player_index += 1
 	else :
 		current_player_index = 0
-	
+	await get_tree().create_timer(0.2).timeout
 	players[current_player_index].play_turn()
-
+	
 	pass
 
 

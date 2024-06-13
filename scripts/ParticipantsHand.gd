@@ -9,23 +9,38 @@ signal card_ready_for_pontis(card)
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func get_cards_in_hand():
+	return $CardContainer.get_children()
 	
 func add_to_hand(card):
+	%Deck.add_child(card)
+	card.set_visible(true)
+	var tween = get_tree().create_tween() 
+	var delta_x =  $CardReciever.global_position.x 
+	var delta_y =  $CardReciever.global_position.y 
+
+	tween.tween_property(card, "global_position", Vector2(delta_x, delta_y),0.2)
+	await tween.finished
+	
+	
 	card.card_clicked.connect(card_click_handler)
-	if not active_player:
+	if active_player:
 		card.toggle_disabled()
-	$CardContainer.add_child(card)
+		card.reveal()
+	#$CardContainer.add_child(card)
+	card.reparent($CardContainer)
+	
+	
+	
 	
 func put_to_pontis(card):
+	card.toggle_disabled()
 	card_ready_for_pontis.emit(card)
 	pass
 
-func lay_combo(combo_list):
+func lay_combo(_combo_list):
 	pass
 	
 func card_click_handler(card):
+	$CardContainer.remove_child(card)
 	put_to_pontis(card)

@@ -72,7 +72,15 @@ func _ready():
 	pass # Replace with function body.
 
 func draw_card():
-	return DeckCurrent.pop_front()
+	var card = DeckCurrent.pop_front()
+	
+	if DeckCurrent.is_empty():
+		self.set_visible(false)
+		return null
+	#self.add_child(card)
+	card.position = self.global_position - Vector2(250,250)  
+	card.set_visible(true)
+	return card
 	
 func shuffle():
 	pass
@@ -84,6 +92,7 @@ func load_cards():
 	for deck_entry in DeckComposition:
 		var card = CardBase.instantiate()
 		card.CardInfo = CardDatabase.DATA[deck_entry]
+		
 		for times in DeckComposition[deck_entry]:
 			DeckCurrent.append(card)
 	pass

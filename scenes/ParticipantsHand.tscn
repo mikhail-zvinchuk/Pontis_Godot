@@ -12,3 +12,6 @@ offset_right = 476.0
 offset_bottom = 96.0
 theme_override_constants/h_separation = -20
 alignment = 1
+
+[node name="CardReciever" type="Node2D" parent="."]
+position = Vector2(238, 47)

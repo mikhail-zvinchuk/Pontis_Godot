@@ -17,8 +17,10 @@ func _init(dealler, participant_hand, player_type):
 	hand = participant_hand
 	dealer = dealler
 	type = player_type
-
+	hand.card_ready_for_pontis.connect(player_retrun_card)
 	pass
+	
+	
 # Turn consists of several choice groups
 #  Draw card from the deck or from the pontis
 #  - Deck draw choosen
@@ -29,6 +31,8 @@ func _init(dealler, participant_hand, player_type):
 #       - Player can't lay the cards from Pontis is they can't lay even one
 #       - If all drawn cards from pontis were layed, player doesn't need to lay anything to the pontis
 #       - If not a card has to be returned to pontis
+
+
 func play_turn():
 	match type:
 		PlayerTypes.HUMAN:
@@ -45,7 +49,8 @@ func play_turn():
 
 
 func recieve_card(card):
-	hand.add_to_hand(card)
+	if card:
+		hand.add_to_hand(card)
 	pass
 	
 	
@@ -56,12 +61,11 @@ func make_npc_move():
 	if card_from_pontis:
 		var cards_from_pontis = get_cards_from_pontis()
 		lay_cards(cards_from_pontis)
-		return_card(cards_from_pontis)
+		npc_return_card(cards_from_pontis)
 	else:
 		recieve_card(dealer.draw_card())
 		lay_cards(null)
-		return_card(null)
-
+		npc_return_card(null)
 	pass
 
 func check_pontis_for_card_that_can_be_layed():
@@ -73,15 +77,24 @@ func get_cards_from_pontis():
 	pass
 
 
-func lay_cards(cards_from_pontis):
+func lay_cards(_cards_from_pontis):
 	#TODO add laying
 	pass
 
-func return_card(cards_from_pontis):
-	var cards_in_hand = hand.CardContainer.get_children()
+func player_retrun_card(card):
+	dealer.put_card_on_pontis(card)
+	finsihed_turn.emit()
 
+func npc_return_card(cards_from_pontis):
+	var cards_in_hand = hand.get_cards_in_hand()
+
+	if cards_from_pontis:
+		cards_in_hand += cards_from_pontis
+		
 	var choosen_card = cards_in_hand[0]
-	hand.put_to_pontis(choosen_card)
+	choosen_card.toggle_disabled()
+	hand.card_click_handler(choosen_card)
+	
 	pass
 	
 	#todo real implementatio
