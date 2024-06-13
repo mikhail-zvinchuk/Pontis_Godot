@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://scripts/CardBase.gd" id="1_lfkfb"]
 
 [node name="CardBase" type="MarginContainer"]
-anchors_preset = -1
-anchor_top = -0.5
-offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(35.5, 47)
 script = ExtResource("1_lfkfb")
 
 [node name="Card" type="TextureButton" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="pressed" from="Card" to="." method="_on_texture_button_pressed"]
