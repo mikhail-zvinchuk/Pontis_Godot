@@ -1,6 +1,6 @@
 extends Node2D
 
-# This is the visual representation of participants handand it's UI
+# This is the visual representation of participants hand and it's UI
 
 signal card_ready_for_pontis(card)
 
@@ -27,7 +27,7 @@ func add_to_hand(card):
 	if active_player:
 		card.toggle_disabled()
 		card.reveal()
-	#$CardContainer.add_child(card)
+	
 	card.reparent($CardContainer)
 	
 	

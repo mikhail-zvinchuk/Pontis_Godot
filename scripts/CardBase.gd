@@ -36,3 +36,11 @@ func reveal():
 
 func _on_texture_button_pressed():
 	card_clicked.emit(self)
+
+
+func _on_card_mouse_entered():
+	scale = Vector2(1.1,1.1) 
+
+
+func _on_card_mouse_exited():
+	scale = Vector2(1,1) 
