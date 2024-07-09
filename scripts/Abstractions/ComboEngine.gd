@@ -20,7 +20,7 @@ class Combo:
 
 #Lists all possible combinations
 func get_combo_list_from_card_collections(hand, field, oponent_fields, pontis) -> Array[Combo] :
-	pass
+	return Array[Combo]
 
 
 func is_valid_combo(combo: Combo):

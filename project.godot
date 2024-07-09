@@ -20,6 +20,15 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1193
 window/size/viewport_height=795
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-git-plugin/plugin.cfg", "res://addons/gut/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
