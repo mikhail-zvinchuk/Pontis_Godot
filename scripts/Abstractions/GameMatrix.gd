@@ -23,24 +23,17 @@ enum Owners{
 	Player3,
 	Player4
 }
-
-class Card:
-	var owner = Owners.Deck
-	var Open = false
-	var IsJoker = false
-	var Meld = null
-	var card_data = null
-	# how much this card scores
-	var score = 0 
-	# How does this card comapre to others
-	var kind = 0
-	# What is the suit of this card
 	
 
 enum MeldType{
 	Suit,
 	Kind
 }
+
+func check_if_card_set_is_valid_meld(cards):
+	var meld = Meld.new()
+	return meld.is_meld(cards)
+
 
 class Meld:
 	var type: MeldType =  MeldType.Kind
@@ -50,22 +43,22 @@ class Meld:
 	var extension_melds = []
 	
 	func is_meld(cards):
-		if cards.count >= 3:
+		if cards.size() >= 3:
 			# checking for same kind
-			var cards_of_same_kind = cards.filter(func(card): return card.kind == cards[0].kind).count
-			if cards_of_same_kind == cards.count:
+			var cards_of_same_kind = cards.filter(func(card): return card.kind == cards[0].kind).size()
+			if cards_of_same_kind == cards.size():
 				# this is meld of same kind
 				type = MeldType.Kind
 				return true
 				
-			var cards_of_same_suit = cards.filter(func(card): return card.suit == cards[0].suit).count
-			if cards_of_same_suit == cards.count:
+			var cards_of_same_suit = cards.filter(func(card): return card.suit == cards[0].suit).size()
+			if cards_of_same_suit == cards.size():
 				# this might be sequence of the same suit
 				cards.sort_custom(card_comparator)
 				var prev = null
 				for card in cards:
 					if prev != null:
-						if prev +1 != card:
+						if prev.kind +1 != card.kind:
 							return false
 					prev = card
 				type = MeldType.Suit
@@ -73,7 +66,7 @@ class Meld:
 		return false
 	
 	func card_comparator(a: Card, b: Card):
-		if a.rank < b.rank:
+		if a.kind < b.kind:
 			return true
 		return false   
 	
