@@ -14,6 +14,7 @@ var CardBackName = "Back_Blue_1"
 var CardBackImage = str("res://assets/cards/",CardBackName,".png")
 var CardFrontImage = null
 var revealed = false
+var highlighted = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,3 +45,8 @@ func _on_card_mouse_entered():
 
 func _on_card_mouse_exited():
 	scale = Vector2(1,1) 
+	
+	
+func _toggle_highlight():
+	highlighted = !highlighted
+	

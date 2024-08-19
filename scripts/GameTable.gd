@@ -78,7 +78,7 @@ func _on_start_game_button_pressed():
 
 
 	#initial dealing
-	for i in 5:
+	for i in 5: 
 		for j in 4:
 			var drawn_card = Deck.draw_card()
 			#TODO Add animation of card movement
