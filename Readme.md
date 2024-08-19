@@ -2,7 +2,7 @@
 
 # 🚀 Pontis  
 
-Failed attempt at making a game tht I played with my grandma.
+Failed attempt at making a game that I played with my grandma.
 You can see thi project in action [here](https://bigpupseg.itch.io/pontis) on itch.
 
 ## 📋 Table of Contents
